@@ -1,0 +1,50 @@
+<ion-grid fixed>
+  <ion-row class="ion-justify-content-center ion-align-items-center">
+    <ion-col sizeMd="8" sizeLg="6" sizeXl="6" sizeXs="12" sizeSm="10">
+      <ion-card>
+        <ion-card-title>Authentification</ion-card-title>
+        <ion-row>
+          <ion-col size="12">
+            <ion-label>Address mail </ion-label>
+            <ion-item>
+              <ion-input type="text" placeholder="Address mail" [(ngModel)]  ="email"> </ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12">
+            <ion-label>Mot de passe </ion-label>
+            <ion-item>
+              <ion-input [type]="password_type" placeholder="Mot de passe" [(ngModel)]  ="password">
+              </ion-input>
+              <ion-icon
+                style="cursor: pointer"
+                slot="end"
+                name="eye"
+                (click)="changePasswordInputType()"
+                [color]="icon_color"
+              ></ion-icon>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="12">
+            <ion-button
+              (click)="login()"
+              expand="block"
+              fill="solid"
+              color="primary"
+            >
+              S'authentifier
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="12"></ion-col>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>

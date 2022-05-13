@@ -1,0 +1,25 @@
+<ion-header color="tertiary">
+  <ion-toolbar color="tertiary">
+    <ion-title>Bienvenu(e) {{ user?.last_name }} </ion-title>
+    <ion-buttons slot="end" style="margin-right: 32px">
+      <ion-button
+        (click)="profil()"
+        color="primary"
+        style="margin-right: 16px"
+        fill="solid"
+        shape="round"
+      >
+        <ion-icon name="person"></ion-icon>
+      </ion-button>
+      <ion-button (click)="logOut()" color="danger" fill="solid" shape="round">
+        <ion-icon name="log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed>
+    <ion-nav animated="true" #nav swipeGesture="false"> </ion-nav>
+  </ion-grid>
+</ion-content>
