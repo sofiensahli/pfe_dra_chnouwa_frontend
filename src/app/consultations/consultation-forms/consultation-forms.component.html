@@ -1,0 +1,120 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12">
+      <ion-item lines="full" class="ion-text-start">
+        <ion-label>Nouvelle Consultation</ion-label>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="10">
+      <ion-label> Titre </ion-label>
+      <ion-item class="ion-text-start">
+        <ion-input
+          type="text"
+          placeholder="Saisir le titre de la consultation"
+          [(ngModel)]="consultation.titre"
+        >
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="10">
+      <ion-label> Numero demande d'achat </ion-label>
+      <ion-item class="ion-text-start">
+        <ion-input
+          type="text"
+          placeholder="Saisir le numero demande d'achat"
+          [(ngModel)]="consultation.numero_demande_achat"
+        >
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="10">
+      <ion-label> Numero de comission </ion-label>
+      <ion-item class="ion-text-start">
+        <ion-input
+          type="text"
+          placeholder="Saisir le numero de comission"
+          [(ngModel)]="consultation.numero_comission"
+        >
+        </ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>Date de publication</ion-label>
+        <ion-input
+          value="{{ consultation.date_publication | date: 'dd.MM.yyyy' }}"
+          id="date"
+          class="ion-text-end"
+        ></ion-input>
+        <ion-popover trigger="date" size="cover">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="consultation.date_publication"
+              locale="fr-FR"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="12">
+      <ion-item>
+        <ion-label>Date d'ouverture</ion-label>
+        <ion-input
+          value="{{ consultation.date_ouverture | date: 'dd.MM.yyyy' }}"
+          id="date2"
+          class="ion-text-end"
+        ></ion-input>
+        <ion-popover trigger="date2" size="cover">
+          <ng-template>
+            <ion-datetime
+              presentation="date"
+              [(ngModel)]="consultation.date_ouverture"
+              locale="fr-FR"
+            ></ion-datetime>
+          </ng-template>
+        </ion-popover>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="10">
+      <ion-item class="ion-text-start">
+        <input type="file"  (change)="onChange($event)" />
+      </ion-item>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-align-items-center ion-justify-content-center">
+    <ion-col size="6">
+      <ion-button (click)="cancel()" expand="block" fill="solid" color="danger">
+        Annuler
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button
+        (click)="confirmer()"
+        expand="block"
+        fill="solid"
+        color="success"
+      >
+        Confirmer
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>

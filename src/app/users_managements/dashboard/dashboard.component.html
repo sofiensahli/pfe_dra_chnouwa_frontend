@@ -3,6 +3,16 @@
     <ion-title>Bienvenu(e) {{ user?.last_name }} </ion-title>
     <ion-buttons slot="end" style="margin-right: 32px">
       <ion-button
+        (click)="consultation()"
+        color="tertiary"
+        style="margin-right: 16px"
+        fill="solid"
+        shape="round"
+      >
+        <ion-icon name="clipboard"></ion-icon>
+      </ion-button>
+
+      <ion-button
         (click)="profil()"
         color="primary"
         style="margin-right: 16px"

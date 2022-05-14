@@ -13,14 +13,19 @@ import { UserServiceAPI } from './services/user-services.service';
 import { LoginComponentComponent } from './users_managements/login-component/login-component.component';
 import { DashboardComponent } from './users_managements/dashboard/dashboard.component';
 import { ProfileSectionComponent } from './users_managements/profile-section/profile-section.component';
+import { ConsultationFormsComponent } from './consultations/consultation-forms/consultation-forms.component';
+import { ListConsultationsComponent } from './consultations/list-consultations/list-consultations.component';
+import { ConsultationServiceAPI } from './services/consultation-service.service';
 
 @NgModule({
   declarations: [AppComponent, SignUpComponentComponent
-    , LoginComponentComponent, DashboardComponent, ProfileSectionComponent],
-  exports: [SignUpComponentComponent, LoginComponentComponent, DashboardComponent, ProfileSectionComponent],
+    , LoginComponentComponent, DashboardComponent, ProfileSectionComponent,
+    ConsultationFormsComponent, ListConsultationsComponent],
+  exports: [SignUpComponentComponent, LoginComponentComponent,
+    DashboardComponent, ProfileSectionComponent, ConsultationFormsComponent, ListConsultationsComponent],
   entryComponents: [],
   imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserServiceAPI],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserServiceAPI, ConsultationServiceAPI],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
