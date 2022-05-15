@@ -53,4 +53,8 @@ export class LoginComponentComponent implements OnInit {
       })
     }
   }
+  inscription() {
+    this.router.navigateByUrl('/sign-up')
+
+  }
 }

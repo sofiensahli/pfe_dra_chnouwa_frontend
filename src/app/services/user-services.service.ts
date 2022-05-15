@@ -37,7 +37,7 @@ export class UserServiceAPI {
     formData.append('first_name', user.first_name)
     formData.append('last_name', user.last_name)
     formData.append('email', user.email)
-    formData.append('phone', user.mobile_number)
+    formData.append('mobile_number', user.mobile_number)
     formData.append('role', user.role)
     return this.httpClient.post(this.base_url + "update-user-info", formData, { headers: { Authorization: `Bearer ${token}` } })
   }

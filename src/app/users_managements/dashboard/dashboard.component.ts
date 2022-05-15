@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl('/')
     } else {
       this.user = offlineData.user
-      this.nav.setRoot(ProfileSectionComponent, { user: this.user })
+      this.nav.setRoot(ListConsultationsComponent, { user: this.user , nav : this.nav })
 
     }
   }
@@ -39,10 +39,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   async profil() {
-    this.nav.setRoot(ProfileSectionComponent, { user: this.user })
+    this.nav.setRoot(ProfileSectionComponent, { user: this.user , nav : this.nav})
   }
   consultation(){
-    this.nav.setRoot(ListConsultationsComponent, { user: this.user })
+    this.nav.setRoot(ListConsultationsComponent, { user: this.user , nav : this.nav })
 
   }
 }

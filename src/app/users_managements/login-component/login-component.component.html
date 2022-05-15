@@ -7,7 +7,12 @@
           <ion-col size="12">
             <ion-label>Address mail </ion-label>
             <ion-item>
-              <ion-input type="text" placeholder="Address mail" [(ngModel)]  ="email"> </ion-input>
+              <ion-input
+                type="text"
+                placeholder="Address mail"
+                [(ngModel)]="email"
+              >
+              </ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -16,7 +21,11 @@
           <ion-col size="12">
             <ion-label>Mot de passe </ion-label>
             <ion-item>
-              <ion-input [type]="password_type" placeholder="Mot de passe" [(ngModel)]  ="password">
+              <ion-input
+                [type]="password_type"
+                placeholder="Mot de passe"
+                [(ngModel)]="password"
+              >
               </ion-input>
               <ion-icon
                 style="cursor: pointer"
@@ -42,7 +51,16 @@
         </ion-row>
 
         <ion-row>
-          <ion-col size="12"></ion-col>
+          <ion-col size="12">
+            <ion-button
+              (click)="inscription()"
+              expand="block"
+              fill="solid"
+              color="secondary"
+            >
+              S'inscrire
+            </ion-button>
+          </ion-col>
         </ion-row>
       </ion-card>
     </ion-col>

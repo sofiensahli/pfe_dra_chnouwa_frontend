@@ -3,16 +3,37 @@
     class="ion-justify-content-end ion-align-items-end"
     style="margin-right: 16px"
   >
-    <ion-col size="4">
+    <ion-col size="4" sizeMd="2" sizeLg="2" sizeSm="12" sizeXs="12">
       <ion-button
+        class="ion-text-wrap"
         (click)="showConsultationFrom()"
         expand="block"
-        fill="clear"
-        shape="round"
+        fill="solid"
+        color="primary"
       >
         Ajouter consultation
         <ion-icon slot="end" name="add"></ion-icon>
       </ion-button>
+    </ion-col>
+  </ion-row>
+  <ng-template #listEmptyBlock>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-label style="font-weight: bolder">
+          Aucune consultation trouvée.
+        </ion-label>
+      </ion-col>
+    </ion-row>
+  </ng-template>
+  <ion-row
+    class="ion-justify-content-center ion-align-items-center"
+    *ngIf="consultations && consultations.length > 0; else listEmptyBlock"
+  >
+    <ion-col size="12" *ngFor="let consultation of consultations">
+      <app-list-item
+        [consultation]="consultation"
+        [ionNav]="nav"
+      ></app-list-item>
     </ion-col>
   </ion-row>
 </ion-grid>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -16,16 +16,25 @@ import { ProfileSectionComponent } from './users_managements/profile-section/pro
 import { ConsultationFormsComponent } from './consultations/consultation-forms/consultation-forms.component';
 import { ListConsultationsComponent } from './consultations/list-consultations/list-consultations.component';
 import { ConsultationServiceAPI } from './services/consultation-service.service';
+import { ListItemComponent } from './consultations/list-item/list-item.component';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
+import { ConsultationDetailsComponent } from './consultations/consultation-details/consultation-details.component';
+registerLocaleData(localeFr, 'fr');
 
+// the second parameter 'fr' is optional
 @NgModule({
   declarations: [AppComponent, SignUpComponentComponent
     , LoginComponentComponent, DashboardComponent, ProfileSectionComponent,
-    ConsultationFormsComponent, ListConsultationsComponent],
-  exports: [SignUpComponentComponent, LoginComponentComponent,
-    DashboardComponent, ProfileSectionComponent, ConsultationFormsComponent, ListConsultationsComponent],
+    ConsultationFormsComponent, ListConsultationsComponent, ListItemComponent, ConsultationDetailsComponent],
+  exports: [SignUpComponentComponent, LoginComponentComponent, ConsultationDetailsComponent,
+    DashboardComponent, ProfileSectionComponent, ConsultationFormsComponent, ListConsultationsComponent, ListItemComponent],
   entryComponents: [],
   imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, UserServiceAPI, ConsultationServiceAPI],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'fr' }
+    , UserServiceAPI, ConsultationServiceAPI],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+
+}
