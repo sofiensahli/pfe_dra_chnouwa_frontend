@@ -14,7 +14,7 @@ import { ConsultationFormsComponent } from '../consultation-forms/consultation-f
   styleUrls: ['./list-consultations.component.scss'],
 })
 export class ListConsultationsComponent implements OnInit {
-  @Input() user: User
+  @Input() user: User = new User()
   @Input() nav: IonNav
   token: string
   user$: Observable<User>
@@ -25,8 +25,11 @@ export class ListConsultationsComponent implements OnInit {
 
   async ngOnInit() {
     this.token = await Storage.get({ key: 'user' }).then(value => JSON.parse(value.value).token)
-    this.user$.subscribe(value => { console.log(value) } , (e)=> console.log(e))
-    console.log()
+    this.user$.subscribe(value => {
+      console.log(value)
+      this.user = value;
+    }, (e) => console.log(e))
+    console.log(this.user)
     this.fetchConsultation()
   }
 

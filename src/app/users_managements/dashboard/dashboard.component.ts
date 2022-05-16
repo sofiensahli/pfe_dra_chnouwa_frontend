@@ -15,19 +15,18 @@ import { ProfileSectionComponent } from '../profile-section/profile-section.comp
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
-  user: User
+  user: User = new User()
   user$: Observable<User>
 
   @ViewChild("nav") nav: IonNav
   constructor(private toastController: ToastController, private router: Router, private store: Store<{ user: User }>) {
     this.user$ = store.select('user')
-
+    this.user$.subscribe(val => this.user = val)
   }
 
   async ngOnInit() {
     const offlineData = await this.user$.toPromise().then(value => value)
     // await Storage.get({ key: "user" }).then(value => JSON.parse(value.value))
-    console.log(offlineData)
     if (!offlineData) {
       await showError("Vueillez vous connecter avant de pouvoir utiliser l'applicaiton", this.toastController)
       this.router.navigateByUrl('/')
