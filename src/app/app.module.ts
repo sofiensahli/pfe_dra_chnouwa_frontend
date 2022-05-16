@@ -20,6 +20,8 @@ import { ListItemComponent } from './consultations/list-item/list-item.component
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { ConsultationDetailsComponent } from './consultations/consultation-details/consultation-details.component';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from '../app/state-management/users';
 registerLocaleData(localeFr, 'fr');
 
 // the second parameter 'fr' is optional
@@ -30,7 +32,7 @@ registerLocaleData(localeFr, 'fr');
   exports: [SignUpComponentComponent, LoginComponentComponent, ConsultationDetailsComponent,
     DashboardComponent, ProfileSectionComponent, ConsultationFormsComponent, ListConsultationsComponent, ListItemComponent],
   entryComponents: [],
-  imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, FormsModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, StoreModule.forRoot({ user: counterReducer })],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: LOCALE_ID, useValue: 'fr' }
     , UserServiceAPI, ConsultationServiceAPI],
   bootstrap: [AppComponent],

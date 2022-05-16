@@ -4,6 +4,10 @@ import { showError } from 'src/app/utils/toast';
 import { Storage } from '@capacitor/storage';
 import { UserServiceAPI } from 'src/app/services/user-services.service';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { create_user } from 'src/app/state-management/users';
+import { User } from 'src/app/models/Users.model';
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -15,16 +19,23 @@ export class LoginComponentComponent implements OnInit {
   password: string
   email: string
   loadingModal: HTMLIonLoadingElement
+  user$: Observable<User>
+
   constructor(private toastController: ToastController,
     private loadingController: LoadingController,
-    private userAPI: UserServiceAPI, private router: Router) { }
+    private userAPI: UserServiceAPI, private router: Router, private store: Store<{ user: User }>) {
+    this.user$ = store.select('user')
+  }
 
   async ngOnInit() {
     this.loadingModal = await this.loadingController.create()
-    const offlineData = await Storage.get({ key: "user" }).then(value => JSON.parse(value.value))
+    const offlineData = await Storage.get({ key: 'user' }).then(value => JSON.parse(value.value))
+    console.log(offlineData)
     if (offlineData) {
+      this.store.dispatch(create_user(offlineData.user))
       this.router.navigateByUrl('/dashboard')
     }
+
   }
   changePasswordInputType() {
     this.password_type === "password" ? this.password_type = "text" : this.password_type = "password"
@@ -42,7 +53,10 @@ export class LoginComponentComponent implements OnInit {
           await showError("Mot de passe et/ou email incorrecte(s)", this.toastController)
         } else {
           await Storage.set({ key: "user", value: JSON.stringify(value) })
+
           this.router.navigateByUrl('/dashboard')
+          this.store.dispatch(create_user(value.user))
+
 
         }
         this.loadingModal.dismiss()
@@ -55,6 +69,6 @@ export class LoginComponentComponent implements OnInit {
   }
   inscription() {
     this.router.navigateByUrl('/sign-up')
-
+    //this.store.dispatch(create_user())
   }
 }
